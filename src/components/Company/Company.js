@@ -7,7 +7,7 @@ const Container = styled.div`
 const Image = styled.div`
   width: 140px;
   height: 100px;
-  background-size: contain;
+  background-size: 80%;
   background-repeat: no-repeat;
   background-position: center center;
   background-image: ${(props) =>

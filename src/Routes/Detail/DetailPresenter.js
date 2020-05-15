@@ -205,7 +205,7 @@ const DetailPresenter = ({
   toggleOverlay,
   videoKey,
 }) => {
-  console.log(type, info, crew, cast);
+  //console.log(type, info, crew, cast);
   return loading ? (
     <>
       <Helmet>
