@@ -4,7 +4,7 @@
 
 ## Preview
 
-[netlify](https://vibrant-perlman-0e8ecc.netlify.app/)
+https://vibrant-perlman-0e8ecc.netlify.app/
 
 ## Screens
 
