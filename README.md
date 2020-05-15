@@ -2,6 +2,10 @@
 
 - Nokflix with React, Redux, Redux-saga, Styled-components and TMDB API
 
+## Preview
+
+[netlify](https://vibrant-perlman-0e8ecc.netlify.app/)
+
 ## Screens
 
 - [✅] Home
