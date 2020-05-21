@@ -38,12 +38,12 @@ api.interceptors.request.use((config) => {
   config.params["language"] = "en-US";
   return config;
 });
-function nowPlayingAPI() {
-  return api.get(`movie/now_playing`);
+function nowPlayingAPI(data) {
+  return api.get(`movie/now_playing?page=${data.page}`);
 }
-function* nowPlaying() {
+function* nowPlaying(action) {
   try {
-    const result = yield call(nowPlayingAPI);
+    const result = yield call(nowPlayingAPI, action.payload);
     yield put({
       type: MOVIE_NOW_SUCCESS,
       payload: result.data,
@@ -59,12 +59,12 @@ function* watchNowPlaying() {
   yield takeLatest(MOVIE_NOW_REQUEST, nowPlaying);
 }
 
-function upComingAPI() {
-  return api.get(`movie/upcoming`);
+function upComingAPI(data) {
+  return api.get(`movie/upcoming?page=${data.page}`);
 }
-function* upComing() {
+function* upComing(action) {
   try {
-    const result = yield call(upComingAPI);
+    const result = yield call(upComingAPI, action.payload);
     yield put({
       type: MOVIE_UPCOMING_SUCCESS,
       payload: result.data,
@@ -80,12 +80,12 @@ function* watchUpComing() {
   yield takeLatest(MOVIE_UPCOMING_REQUEST, upComing);
 }
 
-function topRatedMovieAPI() {
-  return api.get(`movie/top_rated`);
+function topRatedMovieAPI(data) {
+  return api.get(`movie/top_rated?page=${data.page}`);
 }
-function* topRatedMovie() {
+function* topRatedMovie(action) {
   try {
-    const result = yield call(topRatedMovieAPI);
+    const result = yield call(topRatedMovieAPI, action.payload);
     yield put({
       type: MOVIE_TOP_RATED_SUCCESS,
       payload: result.data,
@@ -101,12 +101,12 @@ function* watchTopRatedMovie() {
   yield takeLatest(MOVIE_TOP_RATED_REQUEST, topRatedMovie);
 }
 
-function popularMovieAPI() {
-  return api.get(`movie/popular`);
+function popularMovieAPI(data) {
+  return api.get(`movie/popular?page=${data.page}`);
 }
-function* popularMovie() {
+function* popularMovie(action) {
   try {
-    const result = yield call(popularMovieAPI);
+    const result = yield call(popularMovieAPI, action.payload);
     yield put({
       type: MOVIE_POPULAR_SUCCESS,
       payload: result.data,

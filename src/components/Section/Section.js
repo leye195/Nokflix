@@ -6,9 +6,23 @@ const Container = styled.section`
     margin-bottom: 40px;
   }
 `;
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
 const Title = styled.span`
   font-size: 1rem;
   font-weight: 600;
+  margin-right: 10px;
+`;
+const More = styled.span`
+  padding: 3px;
+  background-color: #e74c3c;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 `;
 const Grid = styled.div`
   display: grid;
@@ -16,10 +30,13 @@ const Grid = styled.div`
   grid-gap: 20px;
   margin-top: 20px;
 `;
-const Section = ({ title, children }) => {
+const Section = ({ title, children, more }) => {
   return (
     <Container>
-      <Title>{title}</Title>
+      <TitleContainer>
+        <Title>{title}</Title>
+        <More>{more === true && `more`}</More>
+      </TitleContainer>
       <Grid>{children}</Grid>
     </Container>
   );

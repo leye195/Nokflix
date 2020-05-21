@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 import Loader from "components/Loader";
 import Section from "components/Section";
 import Poster from "components/Poster";
-const Container = styled.div`
+const Container = styled.main`
   display: flex;
   flex-direction: column;
   padding-top: 20px;

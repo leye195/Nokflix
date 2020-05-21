@@ -32,12 +32,12 @@ api.interceptors.request.use((config) => {
   config.params["language"] = "en-US";
   return config;
 });
-function topRatedTVAPI() {
-  return api.get(`tv/top_rated`);
+function topRatedTVAPI(data) {
+  return api.get(`tv/top_rated?page=${data.page}`);
 }
-function* topRatedTV() {
+function* topRatedTV(action) {
   try {
-    const result = yield call(topRatedTVAPI);
+    const result = yield call(topRatedTVAPI, action.payload);
     yield put({
       type: TV_TOP_RATED_SUCCESS,
       payload: result.data,
@@ -53,12 +53,12 @@ function* watchTopRatedTV() {
   yield takeLatest(TV_TOP_RATED_REQUEST, topRatedTV);
 }
 
-function popularTVAPI() {
-  return api.get(`tv/popular`);
+function popularTVAPI(data) {
+  return api.get(`tv/popular?page=${data.page}`);
 }
-function* popularTV() {
+function* popularTV(action) {
   try {
-    const result = yield call(popularTVAPI);
+    const result = yield call(popularTVAPI, action.payload);
     yield put({
       type: TV_POPULAR_SUCCESS,
       payload: result.data,
@@ -74,12 +74,12 @@ function* watchPopularTV() {
   yield takeLatest(TV_POPULAR_REQUEST, popularTV);
 }
 
-function airingTVAPI() {
-  return api.get("tv/airing_today");
+function airingTVAPI(data) {
+  return api.get(`tv/airing_today?page=${data.page}`);
 }
-function* airingTV() {
+function* airingTV(action) {
   try {
-    const result = yield call(airingTVAPI);
+    const result = yield call(airingTVAPI, action.payload);
     yield put({
       type: TV_AIRING_SUCCESS,
       payload: result.data,
@@ -95,16 +95,16 @@ function* watchAiringTV() {
   yield takeLatest(TV_AIRING_REQUEST, airingTV);
 }
 
-function movieDetailAPI(data) {
+function tvDetailAPI(data) {
   return api.get(`tv/${data.id}`, {
     params: {
       append_to_response: "videos",
     },
   });
 }
-function* movieDetail(action) {
+function* tvDetail(action) {
   try {
-    const result = yield call(movieDetailAPI, action.payload);
+    const result = yield call(tvDetailAPI, action.payload);
     yield put({
       type: TV_DETAIL_SUCCESS,
       payload: result.data,
@@ -116,8 +116,8 @@ function* movieDetail(action) {
     });
   }
 }
-function* watchMovieDetail() {
-  yield takeLatest(TV_DETAIL_REQUEST, movieDetail);
+function* watchTvDetail() {
+  yield takeLatest(TV_DETAIL_REQUEST, tvDetail);
 }
 
 function tvRecommendationAPI(data) {
@@ -193,7 +193,7 @@ export default function* tvSaga() {
     fork(watchTopRatedTV),
     fork(watchPopularTV),
     fork(watchAiringTV),
-    fork(watchMovieDetail),
+    fork(watchTvDetail),
     fork(watchTvRecommendation),
     fork(watchTvSearch),
     fork(watchTvCredit),

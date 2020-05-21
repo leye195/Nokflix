@@ -7,7 +7,7 @@ import HorizontalScroll from "components/HorizontalScroll";
 import Poster from "components/Poster";
 import Loader from "components/Loader";
 import ImageScroll from "components/ImageScroll";
-const Container = styled.div`
+const Container = styled.main`
   padding: 0 20px;
   margin-top: 420px;
 `;
@@ -38,7 +38,7 @@ const HomePresenter = ({
         <ImageScroll movieTrend={movieTrend} />
         {nowPlaying && nowPlaying.length > 0 && (
           <HorizontalScroll title="Now Playing">
-            {nowPlaying.map((movie) => (
+            {nowPlaying.slice(0, 20).map((movie) => (
               <Poster
                 key={v4()}
                 id={movie.id}
@@ -54,7 +54,7 @@ const HomePresenter = ({
         )}
         {upcoming && upcoming.length > 0 && (
           <HorizontalScroll title="Upcoming Movie">
-            {upcoming.map((movie) => (
+            {upcoming.slice(0, 20).map((movie) => (
               <Poster
                 key={v4()}
                 id={movie.id}
@@ -70,7 +70,7 @@ const HomePresenter = ({
         )}
         {moviePopular && moviePopular.length > 0 && (
           <HorizontalScroll title="Popular Movie">
-            {moviePopular.map((movie) => (
+            {moviePopular.slice(0, 20).map((movie) => (
               <Poster
                 key={v4()}
                 id={movie.id}
@@ -86,7 +86,7 @@ const HomePresenter = ({
         )}
         {topRatedTV && topRatedTV.length > 0 && (
           <HorizontalScroll title="Top Rated TV Show">
-            {topRatedTV.map((tv) => (
+            {topRatedTV.slice(0, 20).map((tv) => (
               <Poster
                 key={v4()}
                 id={tv.id}
@@ -102,7 +102,7 @@ const HomePresenter = ({
         )}
         {tvPopular && tvPopular.length > 0 && (
           <HorizontalScroll title="Popular TV Show">
-            {tvPopular.map((tv) => (
+            {tvPopular.slice(0, 20).map((tv) => (
               <Poster
                 key={v4()}
                 id={tv.id}

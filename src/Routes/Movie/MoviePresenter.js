@@ -6,8 +6,8 @@ import { Helmet } from "react-helmet-async";
 import Section from "components/Section";
 import Loader from "components/Loader";
 import Poster from "components/Poster";
-
-const Container = styled.div`
+import More from "components/More";
+const Container = styled.main`
   padding: 0 20px;
 `;
 const MoviePresenter = ({
@@ -19,6 +19,11 @@ const MoviePresenter = ({
   upComingLoading,
   popularLoading,
   topRatedLoading,
+  handleMore,
+  nowPlayingPage,
+  upComingPage,
+  popularPage,
+  topRatedPage,
 }) => (
   <>
     <Helmet>
@@ -44,6 +49,7 @@ const MoviePresenter = ({
                 link={true}
               />
             ))}
+            <More handleMore={handleMore("nowPlaying")(nowPlayingPage)} />
           </Section>
         )}
         {upComing && upComing.length > 0 && (
@@ -59,6 +65,7 @@ const MoviePresenter = ({
                 link={true}
               />
             ))}
+            <More handleMore={handleMore("upComing")(upComingPage)} />
           </Section>
         )}
         {popular && popular.length > 0 && (
@@ -74,6 +81,7 @@ const MoviePresenter = ({
                 link={true}
               />
             ))}
+            <More handleMore={handleMore("popular")(popularPage)} />
           </Section>
         )}
         {topRated && topRated.length > 0 && (
@@ -89,6 +97,7 @@ const MoviePresenter = ({
                 link={true}
               />
             ))}
+            <More handleMore={handleMore("topRated")(topRatedPage)} />
           </Section>
         )}
       </Container>

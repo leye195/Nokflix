@@ -3,10 +3,11 @@ import PropsTypes from "prop-types";
 import Section from "components/Section";
 import Loader from "components/Loader";
 import Poster from "components/Poster";
+import More from "components/More";
 import styled from "styled-components";
 import { v4 } from "uuid";
 import { Helmet } from "react-helmet-async";
-const Container = styled.div`
+const Container = styled.main`
   padding: 0 20px;
 `;
 const TVPresenter = ({
@@ -16,6 +17,10 @@ const TVPresenter = ({
   isTopRatedTVLoading,
   isTVPopularLoading,
   isAiringTodayLoading,
+  airingPage,
+  topRatedPage,
+  popularPage,
+  handleMore,
 }) => (
   <>
     <Helmet>
@@ -40,6 +45,7 @@ const TVPresenter = ({
                 link={true}
               />
             ))}
+            <More handleMore={handleMore("airing")(airingPage)} />
           </Section>
         )}
         {popular && popular.length > 0 && (
@@ -55,6 +61,7 @@ const TVPresenter = ({
                 link={true}
               />
             ))}
+            <More handleMore={handleMore("popular")(popularPage)} />
           </Section>
         )}
         {topRated && topRated.length > 0 && (
@@ -70,6 +77,7 @@ const TVPresenter = ({
                 link={true}
               />
             ))}
+            <More handleMore={handleMore("topRated")(topRatedPage)} />
           </Section>
         )}
       </Container>

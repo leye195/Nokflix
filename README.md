@@ -2,7 +2,7 @@
 
 - Nokflix with React, Redux, Redux-saga, Styled-components and TMDB API
 
-## Preview
+## Preview-Link
 
 https://vibrant-perlman-0e8ecc.netlify.app/
 
@@ -14,6 +14,7 @@ https://vibrant-perlman-0e8ecc.netlify.app/
 - [✅] Search
 - [✅] Detail
 - [✅] Person
+- [✅] Season
 
 ## API Verbs
 

@@ -6,13 +6,13 @@ import {
   Switch,
 } from "react-router-dom";
 import Header from "components/Header";
-
 import Home from "../Routes/Home";
 import Search from "../Routes/Search";
 import TV from "../Routes/TV";
 import Movie from "../Routes/Movie";
 import Detail from "../Routes/Detail";
 import Person from "../Routes/Person";
+import Season from "../Routes/Season";
 export default () => (
   <Router>
     <Header />
@@ -23,7 +23,7 @@ export default () => (
       <Route path={"/search"} component={Search} />
       <Route path={"/movie/:id"} component={Detail} />
       <Route path={"/tv/:id"} exact component={Detail} />
-      <Route path={"/tv/:id/season/:season"} component={Detail} />
+      <Route path={"/tv/:id/season/:season"} component={Season} />
       <Route path={"/person/:id"} component={Person} />
       <Redirect from={"*"} to="/" />
     </Switch>

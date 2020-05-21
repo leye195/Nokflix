@@ -28,12 +28,36 @@ const HomeContainer = () => {
     isTVPopularLoading,
   } = useSelector((state) => state.tv);
   useEffect(() => {
-    dispatch(loadMovieUpcoming());
-    dispatch(loadMovieNow());
-    dispatch(loadPopularMovie());
-    dispatch(loadTopRatedTV());
-    dispatch(loadPopularTV());
-    dispatch(loadMovieTrend());
+    dispatch(
+      loadMovieUpcoming({
+        page: 1,
+      })
+    );
+    dispatch(
+      loadMovieNow({
+        page: 1,
+      })
+    );
+    dispatch(
+      loadPopularMovie({
+        page: 1,
+      })
+    );
+    dispatch(
+      loadTopRatedTV({
+        page: 1,
+      })
+    );
+    dispatch(
+      loadPopularTV({
+        page: 1,
+      })
+    );
+    dispatch(
+      loadMovieTrend({
+        page: 1,
+      })
+    );
   }, [dispatch]);
   return (
     <HomePresenter

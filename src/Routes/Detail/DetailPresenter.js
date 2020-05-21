@@ -148,6 +148,11 @@ const CreditContainer = styled.section`
       grid-template-columns: repeat(auto-fill, minmax(150px, 400px));
     }
   }
+  a {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+  }
 `;
 const TrailerContainer = styled.section`
   display: flex;
@@ -438,7 +443,7 @@ const DetailPresenter = ({
                 imgUrl={season?.poster_path}
                 scroll={false}
                 isMovie={false}
-                link={false}
+                link={true}
                 season={season?.season_number}
               />
             ))}

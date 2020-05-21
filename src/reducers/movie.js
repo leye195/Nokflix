@@ -77,11 +77,14 @@ export default handleActions(
     [MOVIE_NOW_REQUEST]: (state, action) =>
       produce(state, (draft) => {
         draft.isMovieNowLoading = true;
+        if (action.payload.page === 1) draft.movieNowPlaying = [];
       }),
     [MOVIE_NOW_SUCCESS]: (state, action) =>
       produce(state, (draft) => {
         draft.isMovieNowLoading = false;
-        draft.movieNowPlaying = action.payload.results;
+        draft.movieNowPlaying = draft.movieNowPlaying.concat(
+          action.payload.results
+        );
       }),
     [MOVIE_NOW_FAILURE]: (state, action) =>
       produce(state, (draft) => {
@@ -90,11 +93,14 @@ export default handleActions(
     [MOVIE_UPCOMING_REQUEST]: (state, action) =>
       produce(state, (draft) => {
         draft.isUpcomingLoading = true;
+        if (action.payload.page === 1) draft.upComingMovie = [];
       }),
     [MOVIE_UPCOMING_SUCCESS]: (state, action) =>
       produce(state, (draft) => {
         draft.isUpcomingLoading = false;
-        draft.upComingMovie = action.payload.results;
+        draft.upComingMovie = draft.upComingMovie.concat(
+          action.payload.results
+        );
       }),
     [MOVIE_UPCOMING_FAILURE]: (state, action) =>
       produce(state, (draft) => {
@@ -103,11 +109,14 @@ export default handleActions(
     [MOVIE_TOP_RATED_REQUEST]: (state, action) =>
       produce(state, (draft) => {
         draft.isTopRatedMovieLoading = true;
+        if (action.payload.page === 1) draft.topRatedMovie = [];
       }),
     [MOVIE_TOP_RATED_SUCCESS]: (state, action) =>
       produce(state, (draft) => {
         draft.isTopRatedMovieLoading = false;
-        draft.topRatedMovie = action.payload.results;
+        draft.topRatedMovie = draft.topRatedMovie.concat(
+          action.payload.results
+        );
       }),
     [MOVIE_TOP_RATED_FAILURE]: (state, action) =>
       produce(state, (draft) => {
@@ -116,11 +125,12 @@ export default handleActions(
     [MOVIE_POPULAR_REQUEST]: (state, action) =>
       produce(state, (draft) => {
         draft.isMoviePopularLoading = true;
+        if (action.payload.page === 1) draft.moviePopular = [];
       }),
     [MOVIE_POPULAR_SUCCESS]: (state, action) =>
       produce(state, (draft) => {
         draft.isMoviePopularLoading = false;
-        draft.moviePopular = action.payload.results;
+        draft.moviePopular = draft.moviePopular.concat(action.payload.results);
       }),
     [MOVIE_POPULAR_FAILURE]: (state, action) =>
       produce(state, (draft) => {

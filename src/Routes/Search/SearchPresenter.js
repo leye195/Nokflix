@@ -16,7 +16,7 @@ const Form = styled.form`
 const Input = styled.input`
   all: unset;
   font-size: 1.4rem;
-  width: 90%;
+  width: 100%;
   background: transparent;
 `;
 const SearchPresenter = ({

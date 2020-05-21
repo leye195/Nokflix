@@ -64,11 +64,12 @@ export default handleActions(
     [TV_TOP_RATED_REQUEST]: (state, action) =>
       produce(state, (draft) => {
         draft.isTopRatedTVLoading = true;
+        if (action.payload.page === 1) draft.topRatedTV = [];
       }),
     [TV_TOP_RATED_SUCCESS]: (state, action) =>
       produce(state, (draft) => {
         draft.isTopRatedTVLoading = false;
-        draft.topRatedTV = action.payload.results;
+        draft.topRatedTV = draft.topRatedTV.concat(action.payload.results);
       }),
     [TV_TOP_RATED_FAILURE]: (state, action) =>
       produce(state, (draft) => {
@@ -77,11 +78,12 @@ export default handleActions(
     [TV_POPULAR_REQUEST]: (state, action) =>
       produce(state, (draft) => {
         draft.isTVPopularLoading = true;
+        if (action.payload.page === 1) draft.tvPopular = [];
       }),
     [TV_POPULAR_SUCCESS]: (state, action) =>
       produce(state, (draft) => {
         draft.isTVPopularLoading = false;
-        draft.tvPopular = action.payload.results;
+        draft.tvPopular = draft.tvPopular.concat(action.payload.results);
       }),
     [TV_POPULAR_FAILURE]: (state, action) =>
       produce(state, (draft) => {
@@ -90,11 +92,12 @@ export default handleActions(
     [TV_AIRING_REQUEST]: (state, action) =>
       produce(state, (draft) => {
         draft.isAiringTodayLoading = true;
+        if (action.payload.page === 1) draft.airingToday = [];
       }),
     [TV_AIRING_SUCCESS]: (state, action) =>
       produce(state, (draft) => {
         draft.isAiringTodayLoading = false;
-        draft.airingToday = action.payload.results;
+        draft.airingToday = draft.airingToday.concat(action.payload.results);
       }),
     [TV_AIRING_FAILURE]: (state, action) =>
       produce(state, (draft) => {
