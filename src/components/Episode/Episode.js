@@ -19,6 +19,8 @@ const Container = styled.div`
 `;
 const LeftSide = styled.div`
   margin-right: 10px;
+  background-color: #696969;
+  border-radius: 5px;
 `;
 const RightSide = styled.div`
   display: flex;

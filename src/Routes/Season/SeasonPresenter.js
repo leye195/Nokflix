@@ -5,6 +5,7 @@ import Loader from "components/Loader";
 import BackgroundImage from "components/BackgroundImage";
 import Poster from "components/Poster";
 import Episode from "components/Episode";
+import { Helmet } from "react-helmet-async";
 import { v4 } from "uuid";
 const Container = styled.main`
   display: flex;
@@ -71,6 +72,9 @@ const SeasonPresenter = ({ season, isLoadingSeason }) => {
     <Loader />
   ) : (
     <Container>
+      <Helmet>
+        <title>Season | Nokflix</title>
+      </Helmet>
       <BackgroundImage imgUrl={season && season.poster_path} />
       <TopSection>
         <Poster
