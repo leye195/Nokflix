@@ -7,6 +7,8 @@ import Loader from "components/Loader";
 import Section from "components/Section";
 import Message from "components/Message";
 import Poster from "components/Poster";
+import FloatingButton from "components/FloatingButton";
+
 const Container = styled.div`
   padding: 0 20px;
 `;
@@ -83,6 +85,7 @@ const SearchPresenter = ({
               movieResult.length === 0 && <Message msg={`Nothing Found`} />}
           </>
         )}
+        <FloatingButton />
       </Container>
     </>
   );

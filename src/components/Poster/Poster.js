@@ -123,7 +123,9 @@ const Poster = ({ id, title, rate, imgUrl, isMovie, scroll, link, season }) => {
               )}
             </>
           ) : (
-            <Title>{title}</Title>
+            <Title>
+              {title.length > 14 ? `${title.substring(0, 14)}...` : title}
+            </Title>
           )}
         </Link>
       ) : (

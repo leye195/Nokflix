@@ -4,6 +4,7 @@ import Section from "components/Section";
 import Loader from "components/Loader";
 import Poster from "components/Poster";
 import More from "components/More";
+import FloatingButton from "components/FloatingButton";
 import styled from "styled-components";
 import { v4 } from "uuid";
 import { Helmet } from "react-helmet-async";
@@ -80,6 +81,7 @@ const TVPresenter = ({
             <More handleMore={handleMore("topRated")(topRatedPage)} />
           </Section>
         )}
+        <FloatingButton />
       </Container>
     )}
   </>

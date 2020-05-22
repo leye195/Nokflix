@@ -7,6 +7,7 @@ import Section from "components/Section";
 import Loader from "components/Loader";
 import Poster from "components/Poster";
 import More from "components/More";
+import FloatingButton from "components/FloatingButton";
 const Container = styled.main`
   padding: 0 20px;
 `;
@@ -37,7 +38,7 @@ const MoviePresenter = ({
     ) : (
       <Container>
         {nowPlaying && nowPlaying.length > 0 && (
-          <Section title="Now Playing">
+          <Section id="top" title="Now Playing">
             {nowPlaying.map((movie) => (
               <Poster
                 key={v4()}
@@ -100,6 +101,7 @@ const MoviePresenter = ({
             <More handleMore={handleMore("topRated")(topRatedPage)} />
           </Section>
         )}
+        <FloatingButton />
       </Container>
     )}
   </>

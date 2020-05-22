@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import Loader from "components/Loader";
 import Section from "components/Section";
 import Poster from "components/Poster";
+import FloatingButton from "components/FloatingButton";
 const Container = styled.main`
   display: flex;
   flex-direction: column;
@@ -17,6 +18,12 @@ const InfoContainer = styled.div`
   margin: 0 auto;
   margin-bottom: 60px;
   padding: 0px 40px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+  @media (max-width: 767px) and (min-width: 250px) {
+    flex-direction: column;
+  }
 `;
 const Image = styled.img`
   width: 180px;
@@ -40,11 +47,22 @@ const Label = styled.span`
   padding: 2px;
   margin-right: 10px;
   box-shadow: 2px 1px 4px 1px #989191d6;
+  width: fit-content;
 `;
-const Span = styled.span``;
+const Span = styled.span`
+  width: fit-content;
+  margin-top: 5px;
+`;
 const Info = styled.div`
   margin-top: 20px;
   font-size: 1rem;
+  display: flex;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+  @media (max-width: 767px) and (min-width: 250px) {
+    flex-direction: column;
+  }
 `;
 const PersonPresenter = ({
   info,
@@ -129,6 +147,7 @@ const PersonPresenter = ({
           </Section>
         )}
       </CreditContainer>
+      <FloatingButton />
     </Container>
   );
 };

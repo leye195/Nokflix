@@ -17,6 +17,8 @@ ${reset};
     background-color:#191919;
     padding-top:80px;
     color:white;
+    scroll-behavior: smooth;
+    transition:top 1s ease-in-out;
   }
 `;
 function App() {
