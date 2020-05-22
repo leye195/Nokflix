@@ -28,6 +28,11 @@ const Item = styled.li`
   border-bottom: 2px solid
     ${(props) => (props.current === true ? "white" : "transparent")};
   transition: border-bottom 0.5s ease-in-out;
+  font-family: ${(props) => (props.logo === true ? "monospace" : "")};
+  font-weight: ${(props) => (props.logo === true ? "bold" : "")};
+  color: ${(props) => (props.logo === true ? "#da4538" : "")};
+  text-shadow: ${(props) => (props.logo === true ? "1px 0px 20px white" : "")};
+
   &:hover {
     background-color: #4444449c;
   }
@@ -47,7 +52,7 @@ const Header = ({
   return (
     <HeaderContainer>
       <HeaderUl>
-        <Item current={pathname === "/"}>
+        <Item logo={true} current={pathname === "/"}>
           <SLink to="/">Nokflix</SLink>
         </Item>
         <Item current={pathname === "/movie"}>

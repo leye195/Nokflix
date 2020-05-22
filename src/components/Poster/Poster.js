@@ -26,6 +26,7 @@ const Container = styled.div`
 `;
 const ImageContainer = styled.div`
   position: relative;
+  opacity: ${(props) => (props.loading === 1 ? 0.5 : 1.0)};
 `;
 const Image = styled.img`
   width: 100%;
@@ -42,7 +43,7 @@ const ImageLoading = styled.div`
     }
   }
   position: absolute;
-  display: ${(props) => (props.loading === true ? "block" : "none")};
+  display: ${(props) => (props.loading === 1 ? "block" : "none")};
   width: 50px;
   height: 50px;
   top: 33%;
@@ -86,9 +87,9 @@ const Rate = styled.span`
   color: black;
 `;
 const Poster = ({ id, title, rate, imgUrl, isMovie, scroll, link, season }) => {
-  const [loading, setLoading] = useState(true);
+  const [imgLoading, setImgLoading] = useState(1);
   const handleImageLoad = useCallback((e) => {
-    setLoading(false);
+    setImgLoading(0);
   }, []);
   return (
     <Container imgEmpty={imgUrl === null} scroll={scroll === true}>
@@ -104,13 +105,13 @@ const Poster = ({ id, title, rate, imgUrl, isMovie, scroll, link, season }) => {
         >
           {imgUrl !== null ? (
             <>
-              <ImageContainer>
+              <ImageContainer loading={imgLoading}>
                 <Image
                   src={`https://image.tmdb.org/t/p/w500${imgUrl}`}
                   alt={title}
                   onLoad={handleImageLoad}
                 />
-                <ImageLoading loading={`${loading}`} />
+                <ImageLoading loading={imgLoading} />
               </ImageContainer>
               {title && (
                 <RateContainer>
