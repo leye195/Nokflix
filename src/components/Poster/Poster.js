@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
+import { trimText } from "../../utills";
 const Container = styled.div`
   position: relative;
   display: flex;
@@ -115,17 +115,13 @@ const Poster = ({ id, title, rate, imgUrl, isMovie, scroll, link, season }) => {
               </ImageContainer>
               {title && (
                 <RateContainer>
-                  <Title>
-                    {title.length > 14 ? `${title.substring(0, 14)}...` : title}
-                  </Title>
+                  <Title>{trimText(title, 14)}</Title>
                   {rate && <Rate>{rate}/10</Rate>}
                 </RateContainer>
               )}
             </>
           ) : (
-            <Title>
-              {title.length > 14 ? `${title.substring(0, 14)}...` : title}
-            </Title>
+            <Title>{trimText(title, 14)}</Title>
           )}
         </Link>
       ) : (

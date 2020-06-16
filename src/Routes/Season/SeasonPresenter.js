@@ -7,6 +7,7 @@ import Poster from "components/Poster";
 import Episode from "components/Episode";
 import { Helmet } from "react-helmet-async";
 import { v4 } from "uuid";
+import { trimText } from "../../utills";
 const Container = styled.main`
   display: flex;
   flex-direction: column;
@@ -85,9 +86,7 @@ const SeasonPresenter = ({ season, isLoadingSeason }) => {
         />
         <SeasonNumber>{season && season.name}</SeasonNumber>
         <Overview>
-          {season && season.overview && season.overview.length >= 540
-            ? `${season.overview.substring(0, 541)}...`
-            : season.overview}
+          {season && season.overview && trimText(season.overview, 540)}
         </Overview>
       </TopSection>
       <EpisodeSection>
