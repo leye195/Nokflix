@@ -7,6 +7,7 @@ import Loader from "components/Loader";
 import Section from "components/Section";
 import Poster from "components/Poster";
 import FloatingButton from "components/FloatingButton";
+import { getImage } from "../../utills";
 const Container = styled.main`
   display: flex;
   flex-direction: column;
@@ -88,7 +89,7 @@ const PersonPresenter = ({
         <title> {info && `${info.name} | Nokflix `}</title>
       </Helmet>
       <InfoContainer>
-        <Image src={`https://image.tmdb.org/t/p/w500${info?.profile_path}`} />
+        <Image src={getImage(info?.profile_path)} />
         <ProfileContainer>
           <Name>{info?.name}</Name>
           <Info>

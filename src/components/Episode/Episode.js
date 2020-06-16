@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getImage } from "../../utills";
 const Container = styled.div`
   display: flex;
 
@@ -63,7 +64,7 @@ const Episode = ({ number, name, overview, imgUrl, date, vote }) => {
   return (
     <Container>
       <LeftSide>
-        <Image src={`https://image.tmdb.org/t/p/w500${imgUrl}`} />
+        <Image src={getImage(imgUrl)} />
       </LeftSide>
       <RightSide>
         <Title>

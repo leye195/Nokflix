@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { getImage } from "../../utills";
 const Container = styled.div`
   display: flex;
 `;
@@ -11,7 +11,7 @@ const Image = styled.div`
   background-repeat: no-repeat;
   background-position: center center;
   background-image: ${(props) =>
-    props.imgUrl ? `url(https://image.tmdb.org/t/p/w500${props.imgUrl})` : ``};
+    props.imgUrl ? `url(${getImage(props.imgUrl)})` : ``};
   background-color: rgba(165, 177, 194, 1);
   display: flex;
   align-items: center;

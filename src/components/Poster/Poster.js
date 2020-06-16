@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { trimText } from "../../utills";
+import { trimText, getImage } from "../../utills";
 const Container = styled.div`
   position: relative;
   display: flex;
@@ -107,7 +107,7 @@ const Poster = ({ id, title, rate, imgUrl, isMovie, scroll, link, season }) => {
             <>
               <ImageContainer loading={imgLoading}>
                 <Image
-                  src={`https://image.tmdb.org/t/p/w500${imgUrl}`}
+                  src={getImage(imgUrl)}
                   alt={title}
                   onLoad={handleImageLoad}
                 />
@@ -126,7 +126,7 @@ const Poster = ({ id, title, rate, imgUrl, isMovie, scroll, link, season }) => {
         </Link>
       ) : (
         <>
-          <Image src={`https://image.tmdb.org/t/p/w500${imgUrl}`} alt={title} />
+          <Image src={getImage(imgUrl)} alt={title} />
         </>
       )}
     </Container>
