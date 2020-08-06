@@ -5,12 +5,15 @@ import {
   loadMovieDetail,
   loadMovieCredits,
   loadMovieRecommendation,
+  loadMovieScoreDistribution,
 } from "../../reducers/movie";
 import {
   loadTVDetail,
   loadTVCredits,
   loadTVRecommendation,
+  loadTVScoreDistribution,
 } from "../../reducers/tv";
+import { getSeriesData } from "../../utills";
 const DetailContainer = ({ match, history: { push } }) => {
   const dispatch = useDispatch();
   const [type, setType] = useState("");
@@ -23,6 +26,7 @@ const DetailContainer = ({ match, history: { push } }) => {
     movieCast,
     movieCrew,
     recommendations: movieRecommendations,
+    scoreDistribution: movieScoreDistribution,
   } = useSelector((state) => state.movie);
   const {
     info: tvInfo,
@@ -30,6 +34,7 @@ const DetailContainer = ({ match, history: { push } }) => {
     tvCast,
     tvCrew,
     recommendations: tvRecommendations,
+    scoreDistribution: tvScoreDistribution,
   } = useSelector((state) => state.tv);
   useEffect(() => {
     const { path, params } = match;
@@ -44,6 +49,7 @@ const DetailContainer = ({ match, history: { push } }) => {
       );
       dispatch(loadMovieCredits({ id: parsedId }));
       dispatch(loadMovieRecommendation({ id: parsedId }));
+      dispatch(loadMovieScoreDistribution({ id: parsedId }));
       setType("movie");
     } else if (path && path.includes("tv")) {
       dispatch(
@@ -53,6 +59,7 @@ const DetailContainer = ({ match, history: { push } }) => {
       );
       dispatch(loadTVCredits({ id: parsedId }));
       dispatch(loadTVRecommendation({ id: parsedId }));
+      dispatch(loadTVScoreDistribution({ id: parsedId }));
       setType("tv");
     } /*else if (path && path.includes("tv") && path.includes("season")) {
       dispatch();
@@ -86,6 +93,9 @@ const DetailContainer = ({ match, history: { push } }) => {
       toggleOverlay={toggleOverlay}
       videoKey={videoKey}
       type={type}
+      seriesData={
+        type === "movie" ? movieScoreDistribution : tvScoreDistribution
+      }
     />
   );
 };

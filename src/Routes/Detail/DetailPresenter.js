@@ -17,6 +17,7 @@ import Trailer from "components/Trailer";
 import Overlay from "components/Overlay";
 import Video from "components/Video";
 import Company from "components/Company";
+import LineChart from "../../components/LineChart/LineChart";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -140,6 +141,7 @@ const CreditContainer = styled.section`
   height: auto;
   margin-top: 10px;
   overflow: scroll;
+  min-height: 200px;
   section {
     &:not(:last-child) {
       margin-bottom: 15px;
@@ -158,6 +160,7 @@ const TrailerContainer = styled.section`
   display: flex;
   overflow: scroll;
   margin: 20px 0;
+  min-height: 200px;
 `;
 const LefeSide = styled.div`
   display: flex;
@@ -185,6 +188,7 @@ const PosterContainer = styled.section`
   overflow-x: scroll;
   overflow-y: hidden;
   width: 70vw;
+  min-height: 200px;
   img,
   a {
     width: 120px;
@@ -209,6 +213,7 @@ const DetailPresenter = ({
   handleToggle,
   toggleOverlay,
   videoKey,
+  seriesData,
 }) => {
   //console.log(type, info, crew, cast);
   return loading ? (
@@ -300,6 +305,7 @@ const DetailPresenter = ({
           <OverView>{info?.overview}</OverView>
         </TextContainer>
       </TopSection>
+      <LineChart seriesData={seriesData} />
       <SubSection>
         <Ul>
           <Li onClick={handleSelected(0)} selected={selected === 0}>
@@ -461,5 +467,6 @@ DetailPresenter.propsTypes = {
   loading: PropsTypes.bool.isRequired,
   selected: PropsTypes.number.isRequired,
   handleSelected: PropsTypes.func.isRequired,
+  seriesData: PropsTypes.array,
 };
 export default DetailPresenter;

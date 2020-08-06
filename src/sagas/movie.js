@@ -27,8 +27,12 @@ import {
   MOVIE_CREDITS_REQUEST,
   MOVIE_CREDITS_FAILURE,
   MOVIE_CREDITS_SUCCESS,
+  MOVIE_SCORE_DISTRIBUTION_SUCCESS,
+  MOVIE_SCORE_DISTRIBUTION_FAILURE,
+  MOVIE_SCORE_DISTRIBUTION_REQUEST,
 } from "../reducers/movie";
 import axios from "axios";
+import { getMovieSeriesDataURL } from "../utills";
 const api = axios.create({
   baseURL: `https://api.themoviedb.org/3/`,
 });
@@ -236,6 +240,27 @@ function* watchMovieCredit() {
   yield takeLatest(MOVIE_CREDITS_REQUEST, movieCredit);
 }
 
+function movieScoreDistributionAPI(data) {
+  return axios.get(getMovieSeriesDataURL(data.id));
+}
+function* movieScoreDistribution(action) {
+  try {
+    const result = yield call(movieScoreDistributionAPI, action.payload);
+    yield put({
+      type: MOVIE_SCORE_DISTRIBUTION_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: MOVIE_SCORE_DISTRIBUTION_FAILURE,
+      error: e,
+    });
+  }
+}
+function* watchMovieScoreDistribution() {
+  yield takeLatest(MOVIE_SCORE_DISTRIBUTION_REQUEST, movieScoreDistribution);
+}
+
 export default function* movieSaga() {
   yield all([
     fork(watchNowPlaying),
@@ -247,5 +272,6 @@ export default function* movieSaga() {
     fork(watchMovieSearch),
     fork(watchMovieTrend),
     fork(watchMovieCredit),
+    fork(watchMovieScoreDistribution),
   ]);
 }

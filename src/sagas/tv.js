@@ -21,8 +21,12 @@ import {
   TV_CREDITS_REQUEST,
   TV_CREDITS_SUCCESS,
   TV_CREDITS_FAILURE,
+  TV_SCORE_DISTRIBUTION_FAILURE,
+  TV_SCORE_DISTRIBUTION_SUCCESS,
+  TV_SCORE_DISTRIBUTION_REQUEST,
 } from "../reducers/tv";
 import axios from "axios";
+import { getSeriesDataURL, getTVSeriesDataURL } from "../utills";
 const api = axios.create({
   baseURL: `https://api.themoviedb.org/3/`,
 });
@@ -183,11 +187,30 @@ function* movieCredit(action) {
     });
   }
 }
-
 function* watchTvCredit() {
   yield takeLatest(TV_CREDITS_REQUEST, movieCredit);
 }
 
+function tvScoreDistributionAPI(data) {
+  return axios.get(getTVSeriesDataURL(data.id));
+}
+function* tvScoreDistribution(action) {
+  try {
+    const result = yield call(tvScoreDistributionAPI, action.payload);
+    yield put({
+      type: TV_SCORE_DISTRIBUTION_SUCCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: TV_SCORE_DISTRIBUTION_FAILURE,
+      error: e,
+    });
+  }
+}
+function* watchTvScoreDistribution() {
+  yield takeLatest(TV_SCORE_DISTRIBUTION_REQUEST, tvScoreDistribution);
+}
 export default function* tvSaga() {
   yield all([
     fork(watchTopRatedTV),
@@ -197,5 +220,6 @@ export default function* tvSaga() {
     fork(watchTvRecommendation),
     fork(watchTvSearch),
     fork(watchTvCredit),
+    fork(watchTvScoreDistribution),
   ]);
 }

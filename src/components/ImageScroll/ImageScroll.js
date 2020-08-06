@@ -102,28 +102,26 @@ const ImageScroll = ({ movieTrend }) => {
       clearInterval(timer.current);
     };
   }, [nextImage]);
-  console.log(movieTrend);
+  //console.log(movieTrend);
   return (
     <Container>
       <ImageContainer>
         {movieTrend.slice(0, 5).map((movie, idx) => (
-          <>
-            <Image
-              key={v4()}
-              imgUrl={movie.backdrop_path}
-              current={idx === current}
-            >
-              <Poster
-                id={movie.id}
-                title={movie.title}
-                rate={movie.vote_average}
-                imgUrl={movie.poster_path}
-                link={true}
-                isMovie={true}
-              />
-              <Title>{movie.title}</Title>
-            </Image>
-          </>
+          <Image
+            key={v4()}
+            imgUrl={movie.backdrop_path}
+            current={idx === current}
+          >
+            <Poster
+              id={movie.id}
+              title={movie.title}
+              rate={movie.vote_average}
+              imgUrl={movie.poster_path}
+              link={true}
+              isMovie={true}
+            />
+            <Title>{movie.title}</Title>
+          </Image>
         ))}
       </ImageContainer>
       <ScrollBarContainer>

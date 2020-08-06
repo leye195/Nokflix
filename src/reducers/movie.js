@@ -36,6 +36,13 @@ export const MOVIE_CREDITS_REQUEST = "MOVIE_CREDITS_REQUEST";
 export const MOVIE_CREDITS_SUCCESS = "MOVIE_CREDITS_SUCCESS";
 export const MOVIE_CREDITS_FAILURE = "MOVIE_CREDITS_FAILURE";
 
+export const MOVIE_SCORE_DISTRIBUTION_REQUEST =
+  "MOVIE_SCORE_DISTRIUTION_REQUEST";
+export const MOVIE_SCORE_DISTRIBUTION_SUCCESS =
+  "MOVIE_SCORE_DISTRIUTION_SUCCESS";
+export const MOVIE_SCORE_DISTRIBUTION_FAILURE =
+  "MOVIE_SCORE_DISTRIUTION_FAILURE";
+
 export const loadMovieNow = createAction(MOVIE_NOW_REQUEST);
 export const loadMovieUpcoming = createAction(MOVIE_UPCOMING_REQUEST);
 export const loadTopRatedMovie = createAction(MOVIE_TOP_RATED_REQUEST);
@@ -47,6 +54,9 @@ export const loadMovieRecommendation = createAction(
 export const searchMovie = createAction(MOVIE_SEARCH_REQUEST);
 export const loadMovieTrend = createAction(MOVIE_TREND_REQUEST);
 export const loadMovieCredits = createAction(MOVIE_CREDITS_REQUEST);
+export const loadMovieScoreDistribution = createAction(
+  MOVIE_SCORE_DISTRIBUTION_REQUEST
+);
 
 const initState = {
   isMovieNowLoading: false,
@@ -71,6 +81,18 @@ const initState = {
   isCreditLoading: false,
   movieCast: [],
   movieCrew: [],
+  scoreDistribution: [
+    { key: 1, doc_count: 0 },
+    { key: 2, doc_count: 0 },
+    { key: 3, doc_count: 0 },
+    { key: 4, doc_count: 0 },
+    { key: 5, doc_count: 0 },
+    { key: 6, doc_count: 0 },
+    { key: 7, doc_count: 0 },
+    { key: 8, doc_count: 0 },
+    { key: 9, doc_count: 0 },
+    { key: 10, doc_count: 0 },
+  ],
 };
 export default handleActions(
   {
@@ -201,6 +223,49 @@ export default handleActions(
     [MOVIE_CREDITS_FAILURE]: (state, action) =>
       produce(state, (draft) => {
         draft.isCreditLoading = false;
+      }),
+    [MOVIE_SCORE_DISTRIBUTION_REQUEST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.scoreDistribution = [
+          { key: 1, doc_count: 0 },
+          { key: 2, doc_count: 0 },
+          { key: 3, doc_count: 0 },
+          { key: 4, doc_count: 0 },
+          { key: 5, doc_count: 0 },
+          { key: 6, doc_count: 0 },
+          { key: 7, doc_count: 0 },
+          { key: 8, doc_count: 0 },
+          { key: 9, doc_count: 0 },
+          { key: 10, doc_count: 0 },
+        ];
+      }),
+    [MOVIE_SCORE_DISTRIBUTION_SUCCESS]: (state, action) =>
+      produce(state, (draft) => {
+        const { payload } = action;
+        const extractSeries =
+          payload
+            .split(" ")
+            .filter((v) => v.startsWith("[") && v.includes("doc_count"))[0] ||
+          [];
+        const seriesData = JSON.parse(
+          extractSeries.slice(0, extractSeries.length - 2)
+        );
+        draft.scoreDistribution = [...seriesData];
+      }),
+    [MOVIE_SCORE_DISTRIBUTION_FAILURE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.scoreDistribution = [
+          { key: 1, doc_count: 0 },
+          { key: 2, doc_count: 0 },
+          { key: 3, doc_count: 0 },
+          { key: 4, doc_count: 0 },
+          { key: 5, doc_count: 0 },
+          { key: 6, doc_count: 0 },
+          { key: 7, doc_count: 0 },
+          { key: 8, doc_count: 0 },
+          { key: 9, doc_count: 0 },
+          { key: 10, doc_count: 0 },
+        ];
       }),
   },
   initState

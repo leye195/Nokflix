@@ -29,6 +29,10 @@ export const TV_CREDITS_REQUEST = "TV_CREDITS_REQUEST";
 export const TV_CREDITS_SUCCESS = "TV_CREDITS_SUCCESS";
 export const TV_CREDITS_FAILURE = "TV_CREDITS_FAILURE";
 
+export const TV_SCORE_DISTRIBUTION_REQUEST = "TV_SCORE_DISTRIBUTION_REQUEST";
+export const TV_SCORE_DISTRIBUTION_SUCCESS = "TV_SCORE_DISTRIBUTION_SUCCESS";
+export const TV_SCORE_DISTRIBUTION_FAILURE = "TV_SCORE_DISTRIBUTION_FAILURE";
+
 export const loadTopRatedTV = createAction(TV_TOP_RATED_REQUEST);
 export const loadPopularTV = createAction(TV_POPULAR_REQUEST);
 export const loadAiringTV = createAction(TV_AIRING_REQUEST);
@@ -36,6 +40,9 @@ export const loadTVDetail = createAction(TV_DETAIL_REQUEST);
 export const loadTVRecommendation = createAction(TV_RECOMMENDATION_REQUEST);
 export const searchTV = createAction(TV_SEARCH_REQUEST);
 export const loadTVCredits = createAction(TV_CREDITS_REQUEST);
+export const loadTVScoreDistribution = createAction(
+  TV_SCORE_DISTRIBUTION_REQUEST
+);
 
 const initState = {
   isTopRatedTVLoading: false,
@@ -58,6 +65,18 @@ const initState = {
 
   tvCast: [],
   tvCrew: [],
+  scoreDistribution: [
+    { key: 1, doc_count: 0 },
+    { key: 2, doc_count: 0 },
+    { key: 3, doc_count: 0 },
+    { key: 4, doc_count: 0 },
+    { key: 5, doc_count: 0 },
+    { key: 6, doc_count: 0 },
+    { key: 7, doc_count: 0 },
+    { key: 8, doc_count: 0 },
+    { key: 9, doc_count: 0 },
+    { key: 10, doc_count: 0 },
+  ],
 };
 export default handleActions(
   {
@@ -168,6 +187,49 @@ export default handleActions(
     [TV_CREDITS_FAILURE]: (state, action) =>
       produce(state, (draft) => {
         draft.isCreditLoading = false;
+      }),
+    [TV_SCORE_DISTRIBUTION_REQUEST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.scoreDistribution = [
+          { key: 1, doc_count: 0 },
+          { key: 2, doc_count: 0 },
+          { key: 3, doc_count: 0 },
+          { key: 4, doc_count: 0 },
+          { key: 5, doc_count: 0 },
+          { key: 6, doc_count: 0 },
+          { key: 7, doc_count: 0 },
+          { key: 8, doc_count: 0 },
+          { key: 9, doc_count: 0 },
+          { key: 10, doc_count: 0 },
+        ];
+      }),
+    [TV_SCORE_DISTRIBUTION_SUCCESS]: (state, action) =>
+      produce(state, (draft) => {
+        const { payload } = action;
+        const extractSeries =
+          payload
+            .split(" ")
+            .filter((v) => v.startsWith("[") && v.includes("doc_count"))[0] ||
+          [];
+        const seriesData = JSON.parse(
+          extractSeries.slice(0, extractSeries.length - 2)
+        );
+        draft.scoreDistribution = [...seriesData];
+      }),
+    [TV_SCORE_DISTRIBUTION_FAILURE]: (state, action) =>
+      produce(state, (draft) => {
+        draft.scoreDistribution = [
+          { key: 1, doc_count: 0 },
+          { key: 2, doc_count: 0 },
+          { key: 3, doc_count: 0 },
+          { key: 4, doc_count: 0 },
+          { key: 5, doc_count: 0 },
+          { key: 6, doc_count: 0 },
+          { key: 7, doc_count: 0 },
+          { key: 8, doc_count: 0 },
+          { key: 9, doc_count: 0 },
+          { key: 10, doc_count: 0 },
+        ];
       }),
   },
   initState
