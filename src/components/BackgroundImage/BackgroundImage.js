@@ -14,7 +14,7 @@ const ImageContainer = styled.div`
   display: flex;
 `;
 const Image = styled.div`
-  width: 90vw;
+  width: 80vw;
   height: 100%;
   margin: 0 auto;
   background-image: linear-gradient(
