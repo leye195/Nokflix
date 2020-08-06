@@ -60,7 +60,7 @@ const LineChart = ({ seriesData }) => {
           name: `${seriesData.reduce(
             (x, y) => x + y.doc_count,
             0
-          )} People Rated`,
+          )} People Rated `,
           data: seriesData.map((data) => data.doc_count),
         },
       ],
