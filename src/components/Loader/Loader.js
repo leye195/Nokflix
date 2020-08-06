@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Container = styled.div`
   position: ${(props) => (props.fixed ? "fixed" : "absolute")};
@@ -62,5 +63,8 @@ const Loader = ({ fixed }) => {
       </Loading>
     </Container>
   );
+};
+Loader.propsType = {
+  fixed: PropTypes.bool,
 };
 export default Loader;

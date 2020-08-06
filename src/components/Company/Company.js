@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { getImage } from "../../utills";
+
 const Container = styled.div`
   display: flex;
 `;
@@ -21,11 +23,15 @@ const Image = styled.div`
   margin: 5px;
 `;
 const Company = ({ name, imgUrl }) => {
-  console.log(name, imgUrl);
+  //console.log(name, imgUrl);
   return (
     <Container>
       <Image imgUrl={imgUrl}>{imgUrl ? "" : `${name}`}</Image>
     </Container>
   );
+};
+Company.propTypes = {
+  name: PropTypes.string,
+  imgUrl: PropTypes.string,
 };
 export default Company;

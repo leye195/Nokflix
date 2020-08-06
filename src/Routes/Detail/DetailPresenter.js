@@ -137,8 +137,8 @@ const CreditContainer = styled.section`
   flex-direction: ${(props) => props?.direction};
   flex-flow: ${(props) => (props.direction === "row" ? "row wrap" : "")};
   justify-content: ${(props) => props.justify};
+  height: auto;
   margin-top: 10px;
-  height: 300px;
   overflow: scroll;
   section {
     &:not(:last-child) {
@@ -324,7 +324,7 @@ const DetailPresenter = ({
           </Li>
         </Ul>
         {selected === 0 && (
-          <CreditContainer direction={"row"} justify={"space-between"}>
+          <CreditContainer direction={"row"} justify={"flex-start"}>
             {cast?.slice(0, 10)?.map((c) => (
               <Link to={`/person/${c?.id}`} key={v4()}>
                 <Credit
@@ -337,7 +337,7 @@ const DetailPresenter = ({
           </CreditContainer>
         )}
         {selected === 1 && (
-          <CreditContainer direction={"column"} justify={"space-between"}>
+          <CreditContainer direction={"column"} justify={"flex-start"}>
             <Section title="Directing">
               {crew?.filter((c) => c?.department === "Directing").length > 0 ? (
                 crew
@@ -355,10 +355,9 @@ const DetailPresenter = ({
                 <Message msg={`No Information`} width={"70vw"} />
               )}
             </Section>
-            <Section title="Production">
-              {crew?.filter((c) => c?.department === "Production").length >
-              0 ? (
-                crew
+            {crew?.filter((c) => c?.department === "Production").length > 0 && (
+              <Section title="Production">
+                {crew
                   ?.filter((c) => c?.department === "Production")
                   ?.map((c) => (
                     <Link to={`/person/${c?.id}`} key={v4()}>
@@ -368,15 +367,12 @@ const DetailPresenter = ({
                         role={c?.job}
                       />
                     </Link>
-                  ))
-              ) : (
-                <Message msg={`No Information`} width={"70vw"} />
-              )}
-            </Section>
-
-            <Section title="Writing">
-              {crew?.filter((c) => c?.department === "Writing").length > 0 ? (
-                crew
+                  ))}
+              </Section>
+            )}
+            {crew?.filter((c) => c?.department === "Writing").length > 0 && (
+              <Section title="Writing">
+                {crew
                   ?.filter((c) => c?.department === "Writing")
                   ?.map((c) => (
                     <Link to={`/person/${c?.id}`} key={v4()}>
@@ -387,11 +383,9 @@ const DetailPresenter = ({
                         role={c?.job}
                       />
                     </Link>
-                  ))
-              ) : (
-                <Message msg={`No Information`} width={"70vw"} />
-              )}
-            </Section>
+                  ))}
+              </Section>
+            )}
           </CreditContainer>
         )}
         {selected === 2 && (

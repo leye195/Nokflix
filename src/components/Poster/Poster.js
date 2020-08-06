@@ -133,8 +133,13 @@ const Poster = ({ id, title, rate, imgUrl, isMovie, scroll, link, season }) => {
   );
 };
 Poster.propTypes = {
-  title: PropTypes.string,
-  imgUrl: PropTypes.string,
+  id: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  imgUrl: PropTypes.string.isRequired,
   rate: PropTypes.number,
+  link: PropTypes.bool,
+  isMovie: PropTypes.bool,
+  scroll: PropTypes.bool,
+  season: PropTypes.string,
 };
 export default Poster;

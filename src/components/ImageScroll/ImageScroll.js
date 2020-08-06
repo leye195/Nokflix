@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useEffect, useRef } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
+import Poster from "../Poster";
 import { v4 } from "uuid";
 const Container = styled.div`
   top: 50px;
@@ -25,8 +27,9 @@ const Image = styled.div`
     }
   }
   outline: none;
-  width: 100vw;
+  width: 80vw;
   height: 100%;
+  margin: 0 auto;
   background-image: linear-gradient(
       to right,
       rgb(20, 24, 28),
@@ -44,8 +47,20 @@ const Image = styled.div`
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center center;
-  display: ${(props) => (props.current ? "block" : "none")};
+  display: ${(props) => (props.current ? "flex" : "none")};
+  flex-direction: column;
   animation: imgAni 1s ease-out;
+  align-items: center;
+  justify-content: center;
+  & img {
+    width: auto;
+  }
+`;
+const Title = styled.p`
+  margin-top: 10px;
+  font-weight: bold;
+  white-space: pre;
+  text-shadow: 0px 1px 12px black;
 `;
 const ScrollBarContainer = styled.div`
   display: flex;
@@ -87,16 +102,28 @@ const ImageScroll = ({ movieTrend }) => {
       clearInterval(timer.current);
     };
   }, [nextImage]);
-
+  console.log(movieTrend);
   return (
     <Container>
       <ImageContainer>
         {movieTrend.slice(0, 5).map((movie, idx) => (
-          <Image
-            key={v4()}
-            imgUrl={movie.backdrop_path}
-            current={idx === current}
-          />
+          <>
+            <Image
+              key={v4()}
+              imgUrl={movie.backdrop_path}
+              current={idx === current}
+            >
+              <Poster
+                id={movie.id}
+                title={movie.title}
+                rate={movie.vote_average}
+                imgUrl={movie.poster_path}
+                link={true}
+                isMovie={true}
+              />
+              <Title>{movie.title}</Title>
+            </Image>
+          </>
         ))}
       </ImageContainer>
       <ScrollBarContainer>
@@ -110,5 +137,8 @@ const ImageScroll = ({ movieTrend }) => {
       </ScrollBarContainer>
     </Container>
   );
+};
+ImageScroll.propsType = {
+  movieTrend: PropTypes.array,
 };
 export default ImageScroll;

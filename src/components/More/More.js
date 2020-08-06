@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Container = styled.div`
@@ -46,5 +47,8 @@ const More = ({ handleMore }) => {
       </Text>
     </Container>
   );
+};
+More.propsType = {
+  handleMore: PropTypes.func,
 };
 export default More;
