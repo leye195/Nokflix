@@ -13,7 +13,6 @@ import {
   loadTVRecommendation,
   loadTVScoreDistribution,
 } from "../../reducers/tv";
-import { getSeriesData } from "../../utills";
 const DetailContainer = ({ match, history: { push } }) => {
   const dispatch = useDispatch();
   const [type, setType] = useState("");
