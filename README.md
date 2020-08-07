@@ -4,7 +4,7 @@
 
 ## Preview-Link
 
-https://nokflix.netlify.app/
+[링크] https://nokflix.netlify.app/
 
 ## Screens
 
