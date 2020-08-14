@@ -132,6 +132,10 @@ const Li = styled.li`
   padding: 10px;
   cursor: pointer;
   border-bottom: ${(props) => (props.selected ? "2px solid white" : "")};
+  &:hover {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+    transition: all 0.1s ease-in-out;
+  }
 `;
 const CreditContainer = styled.section`
   display: flex;

@@ -8,25 +8,25 @@
 
 ## Screens
 
-- [✅] Home
-- [✅] Movie
-- [✅] TV Shows
-- [✅] Search
-- [✅] Detail
-- [✅] Person
-- [✅] Season
+- ✅ Home
+- ✅ Movie
+- ✅ TV Shows
+- ✅ Search
+- ✅ Detail
+- ✅ Person
+- ✅ Season
 
 ## API Verbs
 
-- [✅] Now Playing (Movie)
-- [✅] UpComing (Movie)
-- [✅] Airing Today (TV)
-- [✅] Top Rated (TV,Movie)
-- [✅] Popular (TV,Movie)
-- [✅] Detail (TV,Movie,People)
-- [✅] Recommendations(TV,Movie)
-- [✅] Search (TV, Movie)
-- [✅] Credit (TV, Movie)
+- ✅ Now Playing (Movie)
+- ✅ UpComing (Movie)
+- ✅ Airing Today (TV)
+- ✅ Top Rated (TV,Movie)
+- ✅ Popular (TV,Movie)
+- ✅ Detail (TV,Movie,People)
+- ✅ Recommendations(TV,Movie)
+- ✅ Search (TV, Movie)
+- ✅ Credit (TV, Movie)
 
 ## install
 
