@@ -2,6 +2,8 @@
 
 - Nokflix with React, Redux, Redux-saga, Styled-components and TMDB API
 
+[![HitCount](http://hits.dwyl.com/leye195/Nokflix.svg)](http://hits.dwyl.com/leye195/Nokflix)
+
 ## Preview-Link
 
 [링크] https://nokflix.netlify.app/
