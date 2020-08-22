@@ -11,6 +11,7 @@ const Title = styled.span`
 const ChildrenContainer = styled.div`
   display: flex;
   overflow-x: scroll;
+  overflow-y: hidden;
   margin-top: 10px;
   scroll-behavior: smooth;
   &::-webkit-scrollbar {

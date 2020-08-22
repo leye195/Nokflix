@@ -20,6 +20,11 @@ const Input = styled.input`
   font-size: 1.4rem;
   width: 100%;
   background: transparent;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e3e3e3;
+  &:focus {
+    border-bottom: 1px solid red;
+  }
 `;
 const SearchPresenter = ({
   movieResult,
