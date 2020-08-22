@@ -1,8 +1,10 @@
 import React from "react";
 import PropsTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { v4 } from "uuid";
 import { Helmet } from "react-helmet";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Loader from "components/Loader";
 import Section from "components/Section";
 import Message from "components/Message";
@@ -13,18 +15,29 @@ const Container = styled.div`
   padding: 0 20px;
 `;
 const Form = styled.form`
+  display: flex;
+  align-items: center;
   margin-bottom: 40px;
+
+  & svg {
+    font-size: 20px;
+  }
+  ${(props) =>
+    props.isOnInput
+      ? css`
+          border-bottom: 1px solid red;
+        `
+      : css`
+          border-bottom: 1px solid #e3e3e3;
+        `};
 `;
 const Input = styled.input`
   all: unset;
   font-size: 1.4rem;
   width: 100%;
   background: transparent;
+  padding-left: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #e3e3e3;
-  &:focus {
-    border-bottom: 1px solid red;
-  }
 `;
 const SearchPresenter = ({
   movieResult,
@@ -32,22 +45,27 @@ const SearchPresenter = ({
   isMovieSearching,
   isTVSearching,
   term,
+  isOnInput,
   handleSubmit,
   handleChange,
+  handleOnFocus,
+  handleOnBlur,
 }) => {
-  //console.log(movieResult.length, tvResult.length, term);
   return (
     <>
       <Helmet>
         <title>Search | Nokflix</title>
       </Helmet>
       <Container>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} isOnInput={isOnInput}>
+          <FontAwesomeIcon icon={faSearch} />
           <Input
             value={term}
             type="text"
             placeholder={"Search Movies or TV Shows..."}
             onChange={handleChange}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
           />
         </Form>
         {isMovieSearching !== false && isTVSearching !== false ? (
@@ -101,6 +119,10 @@ SearchPresenter.propsTypes = {
   isMovieSearching: PropsTypes.bool.isRequired,
   isTVSearching: PropsTypes.bool.isRequired,
   term: PropsTypes.string,
+  isOnInput: PropsTypes.bool,
   handleSubmit: PropsTypes.func.isRequired,
+  handleChange: PropsTypes.func.isRequired,
+  handleOnBlur: PropsTypes.func.isRequired,
+  handleOnFocus: PropsTypes.func.isRequired,
 };
 export default SearchPresenter;

@@ -11,12 +11,10 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducers, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(rootSaga);
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <HelmetProvider>
-        <App />
-      </HelmetProvider>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
+  </Provider>,
   document.getElementById("root")
 );

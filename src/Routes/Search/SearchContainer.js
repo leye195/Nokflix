@@ -5,6 +5,7 @@ import { searchMovie } from "../../reducers/movie";
 import { searchTV } from "../../reducers/tv";
 const SearchContainer = () => {
   const [term, setTerm] = useState("");
+  const [isOnInput, setIsOnInPut] = useState(false);
   const dispatch = useDispatch();
   const { movieResult, isMovieSearching } = useSelector((state) => state.movie);
   const { tvResult, isTVSearching } = useSelector((state) => state.tv);
@@ -36,6 +37,18 @@ const SearchContainer = () => {
     },
     [setTerm]
   );
+  const handleOnFocus = useCallback(
+    (e) => {
+      setIsOnInPut(true);
+    },
+    [setIsOnInPut]
+  );
+  const handleOnBlur = useCallback(
+    (e) => {
+      setIsOnInPut(false);
+    },
+    [setIsOnInPut]
+  );
   return (
     <SearchPresenter
       movieResult={movieResult}
@@ -43,8 +56,11 @@ const SearchContainer = () => {
       term={term}
       isMovieSearching={isMovieSearching}
       isTVSearching={isTVSearching}
+      isOnInput={isOnInput}
       handleSubmit={handleSubmit}
       handleChange={handleChange}
+      handleOnFocus={handleOnFocus}
+      handleOnBlur={handleOnBlur}
     />
   );
 };
