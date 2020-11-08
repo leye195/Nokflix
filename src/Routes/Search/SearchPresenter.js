@@ -31,6 +31,7 @@ const Form = styled.form`
           border-bottom: 1px solid #e3e3e3;
         `};
 `;
+
 const Input = styled.input`
   all: unset;
   font-size: 1.4rem;
@@ -39,6 +40,7 @@ const Input = styled.input`
   padding-left: 10px;
   padding-bottom: 10px;
 `;
+
 const SearchPresenter = ({
   movieResult,
   tvResult,
@@ -113,6 +115,7 @@ const SearchPresenter = ({
     </>
   );
 };
+
 SearchPresenter.propsTypes = {
   movieResult: PropsTypes.array,
   tvResult: PropsTypes.array,
@@ -125,4 +128,5 @@ SearchPresenter.propsTypes = {
   handleOnBlur: PropsTypes.func.isRequired,
   handleOnFocus: PropsTypes.func.isRequired,
 };
+
 export default SearchPresenter;

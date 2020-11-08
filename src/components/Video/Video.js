@@ -14,8 +14,9 @@ const IFrame = styled.iframe`
   top: 0;
   left: 0;
   width: 800px;
-  height: 450px;
+  height: 445px;
 `;
+
 const Video = ({ url }) => {
   return (
     <Container>
