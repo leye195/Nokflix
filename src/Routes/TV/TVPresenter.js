@@ -8,9 +8,11 @@ import FloatingButton from "components/FloatingButton";
 import styled from "styled-components";
 import { v4 } from "uuid";
 import { Helmet } from "react-helmet-async";
+
 const Container = styled.main`
   padding: 0 20px;
 `;
+
 const TVPresenter = ({
   popular,
   topRated,

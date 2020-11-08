@@ -85,7 +85,7 @@ const HomePresenter = ({
           </HorizontalScroll>
         )}
         {topRatedTV && topRatedTV.length > 0 && (
-          <HorizontalScroll title="Top Rated TV Show">
+          <HorizontalScroll title="Top Rated TV">
             {topRatedTV.slice(0, 20).map((tv) => (
               <Poster
                 key={v4()}
