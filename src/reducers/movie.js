@@ -1,5 +1,6 @@
 import { handleActions, createAction } from "redux-actions";
 import produce from "immer";
+
 export const MOVIE_NOW_REQUEST = "MOVIE_NOW_REQUEST";
 export const MOVIE_NOW_SUCCESS = "MOVIE_NOW_SUCCESS";
 export const MOVIE_NOW_FAILURE = "MOVIE_NOW_FAILURE";
