@@ -126,7 +126,6 @@ const Ul = styled.ul`
   z-index: 1;
   height: 40px;
   border-bottom: 1px solid white;
-  overflow-x: scroll;
 `;
 const Li = styled.li`
   padding: 10px;
@@ -144,7 +143,6 @@ const CreditContainer = styled.section`
   justify-content: ${(props) => props.justify};
   height: auto;
   margin-top: 10px;
-  overflow: scroll;
   min-height: 200px;
   section {
     &:not(:last-child) {
@@ -162,7 +160,7 @@ const CreditContainer = styled.section`
 `;
 const TrailerContainer = styled.section`
   display: flex;
-  overflow: scroll;
+  overflow: ${props=>props.count>2?'scroll':'hidden'} hidden;
   margin: 20px 0;
   min-height: 200px;
 `;
@@ -189,8 +187,7 @@ const FontContainer = styled.div`
 const PosterContainer = styled.section`
   display: inline-flex;
   align-items: center;
-  overflow-x: scroll;
-  overflow-y: hidden;
+  overflow: ${props=>props.count>5?'scroll':'hidden'} hidden;
   width: 70vw;
   min-height: 200px;
   img,
@@ -399,7 +396,7 @@ const DetailPresenter = ({
           </CreditContainer>
         )}
         {selected === 2 && (
-          <TrailerContainer>
+          <TrailerContainer count={info?.videos?.results.length}>
             {info?.videos?.results?.slice(0, 4)?.map((video) => (
               <Trailer
                 key={v4()}
@@ -410,7 +407,7 @@ const DetailPresenter = ({
           </TrailerContainer>
         )}
         {selected === 3 && (
-          <PosterContainer>
+          <PosterContainer count={recommendations.length}>
             {recommendations?.map((item) => (
               <Poster
                 key={v4()}

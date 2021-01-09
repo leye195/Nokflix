@@ -8,11 +8,14 @@ import Section from "components/Section";
 import Poster from "components/Poster";
 import FloatingButton from "components/FloatingButton";
 import { getImage } from "../../utills";
+import Empty from "../../components/Empty/Empty";
+
 const Container = styled.main`
   display: flex;
   flex-direction: column;
   padding-top: 20px;
 `;
+
 const InfoContainer = styled.div`
   display: flex;
   width: 100vw;
@@ -26,22 +29,27 @@ const InfoContainer = styled.div`
     flex-direction: column;
   }
 `;
+
 const Image = styled.img`
   width: 180px;
   border-radius: 10px;
 `;
+
 const ProfileContainer = styled.article`
   display: flex;
   flex-direction: column;
   flex: 1;
   margin-left: 20px;
 `;
+
 const CreditContainer = styled.div`
   padding: 0px 40px;
 `;
+
 const Name = styled.p`
   font-size: 2rem;
 `;
+
 const Label = styled.span`
   background: #484848;
   border-radius: 5px;
@@ -50,10 +58,12 @@ const Label = styled.span`
   box-shadow: 2px 1px 4px 1px #989191d6;
   width: fit-content;
 `;
+
 const Span = styled.span`
   width: fit-content;
   margin-top: 5px;
 `;
+
 const Info = styled.div`
   margin-top: 20px;
   font-size: 1rem;
@@ -65,6 +75,7 @@ const Info = styled.div`
     flex-direction: column;
   }
 `;
+
 const PersonPresenter = ({
   info,
   movie,
@@ -72,8 +83,9 @@ const PersonPresenter = ({
   infoLoading,
   movieLoading,
   tvLoading,
+  isCastCrewListEmpty
 }) => {
-  //  console.log(info, movie);
+  console.log(isCastCrewListEmpty);
   return infoLoading !== false &&
     movieLoading !== false &&
     tvLoading !== false ? (
@@ -89,7 +101,7 @@ const PersonPresenter = ({
         <title> {info && `${info.name} | Nokflix `}</title>
       </Helmet>
       <InfoContainer>
-        <Image src={getImage(info?.profile_path)} />
+        <Image src={getImage(info?.profile_path)} alt={info?.name}/>
         <ProfileContainer>
           <Name>{info?.name}</Name>
           <Info>
@@ -115,38 +127,45 @@ const PersonPresenter = ({
         </ProfileContainer>
       </InfoContainer>
       <CreditContainer>
-        {movie?.cast?.length > 0 && (
-          <Section title="Cast">
-            {movie.cast.map((m) => (
-              <Poster
-                key={v4()}
-                id={m.id}
-                title={m.title}
-                rate={m.vote_average}
-                imgUrl={m.poster_path}
-                isMovie={true}
-                scroll={false}
-                link={true}
-              />
-            ))}
-          </Section>
-        )}
-        {movie?.crew?.length > 0 && (
-          <Section title="Crew">
-            {movie.cast.map((m) => (
-              <Poster
-                key={v4()}
-                id={m.id}
-                title={m.title}
-                rate={m.vote_average}
-                imgUrl={m.poster_path}
-                isMovie={true}
-                scroll={false}
-                link={true}
-              />
-            ))}
-          </Section>
-        )}
+        {
+          isCastCrewListEmpty?<Empty text={'No Data Found'}/>:(
+            <>
+            {movie?.cast?.length > 0 && (
+              <Section title="Cast">
+                {movie.cast.map((m) => (
+                  <Poster
+                    key={v4()}
+                    id={m.id}
+                    title={m.title}
+                    rate={m.vote_average}
+                    imgUrl={m.poster_path}
+                    isMovie={true}
+                    scroll={false}
+                    link={true}
+                  />
+                ))}
+              </Section>
+            )}
+            {movie?.crew?.length  && (
+              <Section title="Crew">
+                {movie.crew.map((m) => (
+                  <Poster
+                    key={v4()}
+                    id={m.id}
+                    title={m.title}
+                    rate={m.vote_average}
+                    imgUrl={m.poster_path}
+                    isMovie={true}
+                    scroll={false}
+                    link={true}
+                  />
+                ))}
+              </Section>
+            )}
+            </>
+          )
+        }
+        
       </CreditContainer>
       <FloatingButton />
     </Container>
@@ -159,5 +178,6 @@ PersonPresenter.propTypes = {
   infoLoading: PropTypes.bool,
   movieLoading: PropTypes.bool,
   tvLoading: PropTypes.bool,
+  isCastCrewListEmpty: PropTypes.bool.isRequired
 };
 export default PersonPresenter;

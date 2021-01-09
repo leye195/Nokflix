@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PersonPresenter from "./PersonPresenter";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,6 +16,9 @@ const PersonContainer = ({ match, history: { push } }) => {
     isMovieLoading,
     isTVLoading,
   } = useSelector((state) => state.person);
+
+  const [isCastCrewListEmpty,setIsCastCrewListEmpty] = useState(true);
+
   useEffect(() => {
     const {
       params: { id },
@@ -38,6 +41,13 @@ const PersonContainer = ({ match, history: { push } }) => {
       })
     );
   }, [match, push, dispatch]);
+
+  useEffect(() => {
+    if(movie){
+      setIsCastCrewListEmpty(movie.crew?.length||movie.cast?.length? false : true);
+    }
+  },[movie]);
+
   return (
     <PersonPresenter
       info={info || {}}
@@ -46,6 +56,7 @@ const PersonContainer = ({ match, history: { push } }) => {
       infoLoading={isInfoLoading}
       movieLoading={isMovieLoading}
       tvLoading={isTVLoading}
+      isCastCrewListEmpty={isCastCrewListEmpty}
     />
   );
 };
