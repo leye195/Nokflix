@@ -10,25 +10,25 @@
 
 ## Screens
 
-- ✅ Home
-- ✅ Movie
-- ✅ TV Shows
-- ✅ Search
-- ✅ Detail
-- ✅ Person
-- ✅ Season
+[x] Home
+[x] Movie
+[x] TV Shows
+[x] Search
+[x] Detail
+[x] Person
+[x] Season
 
 ## API Verbs
 
-- ✅ Now Playing (Movie)
-- ✅ UpComing (Movie)
-- ✅ Airing Today (TV)
-- ✅ Top Rated (TV,Movie)
-- ✅ Popular (TV,Movie)
-- ✅ Detail (TV,Movie,People)
-- ✅ Recommendations(TV,Movie)
-- ✅ Search (TV, Movie)
-- ✅ Credit (TV, Movie)
+[x] Now Playing (Movie)
+[x] UpComing (Movie)
+[x] Airing Today (TV)
+[x] Top Rated (TV,Movie)
+[x] Popular (TV,Movie)
+[x] Detail (TV,Movie,People)
+[x] Recommendations(TV,Movie)
+[x] Search (TV, Movie)
+[x] Credit (TV, Movie)
 
 ## install
 
