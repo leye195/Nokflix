@@ -1,8 +1,9 @@
 import React, { useCallback, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { trimText, getImage } from "../../utills";
+
 const Container = styled.div`
   position: relative;
   display: flex;
@@ -13,7 +14,6 @@ const Container = styled.div`
   cursor: pointer;
   background-color: ${(props) => (props.imgEmpty ? "#2b2b2b" : "transparent")};
   margin-right: ${(props) => (props.scroll ? "10px" : "")};
-  height: 180px;
   border-radius: 5px;
   a {
     display: flex;
@@ -24,15 +24,18 @@ const Container = styled.div`
     text-align: center;
   }
 `;
+
 const ImageContainer = styled.div`
   position: relative;
   opacity: ${(props) => (props.loading === 1 ? 0.5 : 1.0)};
 `;
+
 const Image = styled.img`
   width: 100%;
   height: 180px;
   border-radius: 5px;
 `;
+
 const ImageLoading = styled.div`
   @keyframes loaderAni {
     from {
@@ -53,6 +56,7 @@ const ImageLoading = styled.div`
   border-radius: 50%;
   animation: loaderAni 1s ease-in-out infinite;
 `;
+
 const Title = styled.span`
   margin-bottom: 5px;
   white-space: pre;
@@ -60,6 +64,7 @@ const Title = styled.span`
   opacity: 1;
   overflow: hidden;
 `;
+
 const RateContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -73,11 +78,14 @@ const RateContainer = styled.div`
   height: 100%;
   opacity: 0;
   transition: opacity 0.5s ease-out;
+
   &:hover {
-    opacity: 1;
     background: #3535355c;
+    border-radius: 5px;
+    opacity: 1;
   }
 `;
+
 const Rate = styled.span`
   font-weight: 700;
   border: 1px solid #e3e3e3;

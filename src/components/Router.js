@@ -7,21 +7,14 @@ import {
 } from "react-router-dom";
 import Header from "components/Header";
 import Loader from "./Loader/Loader";
-//import Home from "../Routes/Home";
-//import Search from "../Routes/Search";
-//import TV from "../Routes/TV";
-//import Movie from "../Routes/Movie";
-//import Detail from "../Routes/Detail";
-//import Person from "../Routes/Person";
-//import Season from "../Routes/Season";
 
-const Home = lazy(() => import("../Routes/Home"));
-const Detail = lazy(() => import("../Routes/Detail"));
-const Movie = lazy(() => import("../Routes/Movie"));
-const TV = lazy(() => import("../Routes/TV"));
-const Person = lazy(() => import("../Routes/Person"));
-const Season = lazy(() => import("../Routes/Season"));
-const Search = lazy(() => import("../Routes/Search"));
+const Home = lazy(() => import("../Pages/Home"));
+const Detail = lazy(() => import("../Pages/Detail"));
+const Movie = lazy(() => import("../Pages/Movie"));
+const TV = lazy(() => import("../Pages/TV"));
+const Person = lazy(() => import("../Pages/Person"));
+const Season = lazy(() => import("../Pages/Season"));
+const Search = lazy(() => import("../Pages/Search"));
 
 export default () => (
   <Router>
