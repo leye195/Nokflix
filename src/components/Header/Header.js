@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link, withRouter } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
@@ -37,6 +37,7 @@ const Item = styled.li`
     background-color: #4444449c;
   }
 `;
+
 const SLink = styled(Link)`
   padding: 15px;
   display: flex;
@@ -44,11 +45,9 @@ const SLink = styled(Link)`
   justify-content: center;
 `;
 
-const Header = ({
-  history: {
-    location: { pathname },
-  },
-}) => {
+const Header = () => {
+  const {location:{pathname}} = useHistory();
+
   return (
     <HeaderContainer>
       <HeaderUl>
@@ -69,4 +68,4 @@ const Header = ({
   );
 };
 
-export default withRouter(Header);
+export default Header;

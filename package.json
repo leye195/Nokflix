@@ -35,6 +35,7 @@
     "start": "react-scripts start",
     "build": "CI= react-scripts build",
     "test": "react-scripts test",
+    "test:cov": "npm test --  --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -51,6 +52,12 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "./src/components/**/*.js",
+      "./src/Pages/**/*.js"
     ]
   }
 }
