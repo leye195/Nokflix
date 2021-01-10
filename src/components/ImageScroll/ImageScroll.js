@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import Poster from "../Poster";
 import { v4 } from "uuid";
+
 const Container = styled.div`
   top: 50px;
   left: 0;
@@ -10,6 +11,7 @@ const Container = styled.div`
   height: 400px;
   position: absolute;
 `;
+
 const ImageContainer = styled.div`
   height: 100%;
   width: 100%;
@@ -56,17 +58,30 @@ const Image = styled.div`
     width: auto;
   }
 `;
+
 const Title = styled.p`
   margin-top: 10px;
   font-weight: bold;
+  font-size: 1.2rem;
   white-space: pre;
-  text-shadow: 0px 1px 12px black;
+  text-shadow: 0 1px 0 #000,
+  0 2px 0 #010f,
+  0 3px 0 #0111,
+  0 4px 0 #0222,
+  0 5px 0 #0333,
+  0 6px 4px rgba(255,255,255,0.3),
+  0 7px 3px rgba(0, 0, 0, 0.3),
+  0 10px 10px rgba(0, 0, 0, 0.2), 
+  0 10px 20px rgba(0, 0, 0, 0.15), 
+  0 20px 20px rgba(0, 0, 0, 0.1);
 `;
+
 const ScrollBarContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
+
 const ScrollBar = styled.div`
   background-color: white;
   transform: ${(props) => (props.current ? "scale(1.2)" : "scale(1)")};
@@ -83,26 +98,30 @@ const ScrollBar = styled.div`
     opacity: 0.6;
   }
 `;
+
 const ImageScroll = ({ movieTrend }) => {
   const [current, setCurrent] = useState(0);
   const timer = useRef(null);
+
   const nextImage = useCallback(() => {
     const nextIdx = (current + 1) % 5;
     setCurrent(nextIdx);
   }, [current]);
+
   const onClickCurrent = useCallback(
     (idx) => (e) => {
       setCurrent(idx);
     },
     []
   );
+
   useEffect(() => {
     timer.current = setInterval(nextImage, 3500);
     return () => {
       clearInterval(timer.current);
     };
   }, [nextImage]);
-  //console.log(movieTrend);
+
   return (
     <Container>
       <ImageContainer>
