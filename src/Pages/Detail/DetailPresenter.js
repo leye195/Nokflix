@@ -119,13 +119,17 @@ const OverView = styled.p`
   word-break: break-all;
   font-weight: 200;
   width: 80%;
-  line-height: 1.2;
+  line-height: 1.5;
 `;
 const Ul = styled.ul`
   display: flex;
   z-index: 1;
   height: 40px;
   border-bottom: 1px solid white;
+
+  @media (max-width: 425px) {
+    overflow-x: scroll;
+  }
 `;
 const Li = styled.li`
   padding: 10px;
