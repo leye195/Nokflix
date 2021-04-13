@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
+import useWindowScroll from "../../hooks/useWindowScroll";
 const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
@@ -13,6 +14,12 @@ const HeaderContainer = styled.header`
   box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.8);
   background-color: #181818cf;
   z-index: 1;
+  transition: all 0.2s linear;
+
+  &.header-hide {
+    transition: all 0.2s linear;
+    transform: translateY(-60px);
+  }
 `;
 const HeaderUl = styled.ul`
   display: flex;
@@ -46,11 +53,24 @@ const SLink = styled(Link)`
 `;
 
 const Header = () => {
+  const [headerHide, setHeaderHide] = useState(false);
+
   const {location:{pathname}} = useHistory();
+  const {scrollY} = useWindowScroll();
+
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    if(scrollY >= 400) {
+      if(!headerHide) setHeaderHide(true);
+    } else {
+      if(headerHide) setHeaderHide(false);
+    }
+  },[scrollY,headerHide]);
 
   return (
-    <HeaderContainer>
-      <HeaderUl>
+    <HeaderContainer className={headerHide&&'header-hide'} ref={headerRef}>
+      <HeaderUl> 
         <Item logo={true} current={pathname === "/"}>
           <SLink to="/">Nokflix</SLink>
         </Item>
