@@ -13,7 +13,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
-    "highcharts": "^8.1.2",
+    "highcharts": "^9.0.0",
     "immer": "^9.0.1",
     "koa": "^2.13.1",
     "koa-static": "^5.0.0",
