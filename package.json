@@ -43,7 +43,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "hompage": "https://vibrant-perlman-0e8ecc.netlify.app",
+  "hompage": "https://nokflix.netlify.app",
   "browserslist": {
     "production": [
       ">0.2%",
